@@ -1,0 +1,40 @@
+# List the folders (relative to root) that you want to watch for changes.
+# watch_paths = ["app", "config"]
+watch_paths = ["cmd/api", "internal"]
+
+# Exclude directories that you don't want to watch.
+exclude_dirs = [
+    "node_modules",
+    "vendor",
+    "tmp"
+]
+
+# List the file extensions that you want to watch.
+exts = [
+    ".go",
+    ".html",
+    ".css",
+    ".js",
+    ".json",
+    ".yml",
+    ".yaml"
+]
+
+# Configure the build command.
+[build]
+cmd = "go build -o ./tmp/main ./cmd/api/main.go"
+
+# Configure the run command.
+[run]
+cmd = "./tmp/main"
+args = []
+port = "8087"
+
+# Configure the log file path.
+log = "./tmp/logs/air.log"
+
+# Configure the grace period for restarting the process.
+kill_delay = "1s"
+
+# Configure the environment variables.
+[env]

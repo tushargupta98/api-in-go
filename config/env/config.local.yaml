@@ -1,0 +1,53 @@
+database:
+  driver: postgres
+  host: PG_URL
+  maxconnlifetime: 10 #minutes
+  maxidleconns: 5
+  maxopenconns: 10
+  name: PG_DATABASE
+  password: PG_PASSWORD
+  port: 5434
+  schema: PG_SCHEMA
+  sslmode: disable
+  sslrootcert: PG_CERTIFICATE
+  user: PG_USERNAME
+
+cache:
+  tlsenabled: false
+  db: REDIS_DATABASE
+  dial_timeout: 5s #seconds
+  expiration: 50s #seconds
+  host: REDIS_URL
+  idle_timeout: 5m #minutes
+  password: ""
+  pool_size: 10 #Count
+  pool_timeout: 30s #seconds
+  port: 6381
+  read_timeout: 3s #seconds
+  write_timeout: 3s #seconds
+  max_retries: 3
+
+server:
+  port: 8087
+
+newrelic:
+  license_key: RDM_NEWRELIC_TOKEN
+  app_name: RDM_NEWRELIC_APPNAME
+
+logger:
+  level: debug
+  formatter:
+    type: text
+    disable_timestamp: false
+    full_timestamp: true
+    timestamp_format: 2006-01-02T15:04:05.000Z
+  output:
+    type: stdout
+    path: logger/app.log
+
+swagger:
+  swagger_ui_path: /swagger-ui/
+  json_path: /swagger-docs/swagger.json
+  docs_path: /swagger-docs/
+  static_dir: ./pkg/swagger/docs/
+  base_path: /api/v1

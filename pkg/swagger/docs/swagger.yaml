@@ -1,0 +1,190 @@
+basePath: /api/v1
+definitions:
+  domain.Domain:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: integer
+      label:
+        type: string
+      updated_at:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: This API is a template to create APIs' in Golang
+  title: API-In-Go
+  version: "1"
+paths:
+  /domain:
+    get:
+      description: Get a list of all domains
+      operationId: list-domain
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/domain.Domain'
+            type: array
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: List domains
+      tags:
+      - Domain
+    post:
+      consumes:
+      - application/json
+      description: Create a new domain
+      operationId: create-domain
+      parameters:
+      - description: Domain object
+        in: body
+        name: date_range
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Domain'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          headers:
+            Location:
+              description: /domain/{id}
+              type: string
+          schema:
+            type: string
+        "400":
+          description: Bad request
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Create a domain
+      tags:
+      - Domain
+  /domain/{id}:
+    delete:
+      description: Delete a domain by ID
+      operationId: delete-domain
+      parameters:
+      - description: Domain ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "204":
+          description: No Content
+          schema:
+            type: string
+        "400":
+          description: Invalid ID
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Delete a domain
+      tags:
+      - Domain
+    get:
+      description: Get a domain by ID
+      operationId: get-domain
+      parameters:
+      - description: Domain ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.Domain'
+        "400":
+          description: Invalid ID
+          schema:
+            type: string
+        "404":
+          description: Domain not found
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Get a domain
+      tags:
+      - Domain
+    put:
+      consumes:
+      - application/json
+      description: Update a domain by ID
+      operationId: update-domain
+      parameters:
+      - description: Domain ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Domain object
+        in: body
+        name: date_range
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Domain'
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            type: string
+        "400":
+          description: Invalid ID or bad request
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Update a domain
+      tags:
+      - Domain
+  /health:
+    get:
+      consumes:
+      - application/json
+      description: Returns the status of the service.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Health check endpoint
+      tags:
+      - API Health Check
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: X-API-KEY
+    type: apiKey
+swagger: "2.0"

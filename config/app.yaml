@@ -1,0 +1,11 @@
+# Application configuration
+
+# The name of the application
+name: api-in-go
+
+# The version of the application
+version: 1.0.0
+
+# The Deployment environment
+
+env: $SN_CONFIG_ENV

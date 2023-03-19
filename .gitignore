@@ -1,0 +1,8 @@
+.DS_Store
+.vscode/*
+logger/app.log --assume-unchanged
+postgres-data/
+redis-data/
+tmp/*
+#pkg/swagger/docs/*
+.VSCodeCounter/

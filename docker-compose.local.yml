@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14.3
+    restart: always
+    environment:
+      POSTGRES_USER: ${PG_USERNAME}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DATABASE}
+    ports:
+      - "5434:5432"
+    volumes:
+      - ./postgres-data:/tmp/postgres-data
+
+  redis:
+    image: redis:6.0.5
+    restart: always
+    command: redis-server
+    ports:
+      - "6381:6379"
+    volumes:
+      - ./redis-data:/tmp/redis-data
